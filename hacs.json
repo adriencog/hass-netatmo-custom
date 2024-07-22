@@ -1,0 +1,6 @@
+{
+    "name": "Netatmo Custom",
+    "render_readme": "true",
+    "domains": ["binary_sensor", "climate"],
+    "iot_class": ["cloud_polling"]
+  }

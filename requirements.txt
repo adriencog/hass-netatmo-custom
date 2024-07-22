@@ -1,0 +1,1 @@
+pyatmo @ git+https://github.com/adriencog/pyatmo.git@1760771ac9d0f842ebbb91b63d730a5bcadac5fc
