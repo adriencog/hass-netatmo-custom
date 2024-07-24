@@ -40,6 +40,7 @@ from .const import (
     NETATMO_CREATE_FAN,
     NETATMO_CREATE_LIGHT,
     NETATMO_CREATE_OPENING_SENSOR,
+    NETATMO_CREATE_PERSON_SWITCHES,
     NETATMO_CREATE_ROOM_SENSOR,
     NETATMO_CREATE_SELECT,
     NETATMO_CREATE_SENSOR,
@@ -128,6 +129,16 @@ class NetatmoPublisher:
     subscriptions: set[CALLBACK_TYPE | None]
     method: str
     kwargs: dict
+
+
+@dataclass
+class NetatmoPerson:
+    """Netatmo person class."""
+
+    data_handler: NetatmoDataHandler
+    person: pyatmo.person.Person
+    parent_id: str
+    signal_name: str
 
 
 class NetatmoDataHandler:
@@ -321,6 +332,7 @@ class NetatmoDataHandler:
             self.setup_climate_schedule_select(home, signal_home)
             self.setup_rooms(home, signal_home)
             self.setup_modules(home, signal_home)
+            self.setup_persons(home, signal_home)
 
             self.hass.data[DOMAIN][DATA_PERSONS][home.entity_id] = {
                 person.entity_id: person.pseudo for person in home.persons.values()
@@ -451,3 +463,18 @@ class NetatmoDataHandler:
                     signal_home,
                 ),
             )
+
+    def setup_persons(self, home: pyatmo.Home, signal_home: str) -> None:
+        """Set up persons."""
+        persons = [
+            NetatmoPerson(
+                self,
+                person,
+                home.entity_id,
+                signal_home,
+            )
+            for person in home.persons.values()
+            if person.pseudo is not None
+        ]
+
+        async_dispatcher_send(self.hass, NETATMO_CREATE_PERSON_SWITCHES, persons)
