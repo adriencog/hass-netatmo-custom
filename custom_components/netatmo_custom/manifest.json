@@ -12,5 +12,6 @@
   "integration_type": "hub",
   "iot_class": "cloud_polling",
   "loggers": ["pyatmo"],
+  "version": "0.1.0",
   "requirements": ["pyatmo @ git+https://github.com/adriencog/pyatmo.git@1760771ac9d0f842ebbb91b63d730a5bcadac5fc"]
 }
