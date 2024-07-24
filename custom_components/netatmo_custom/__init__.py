@@ -106,7 +106,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     hass.data[DOMAIN][entry.entry_id] = {
         AUTH: api.AsyncConfigEntryNetatmoAuth(
-            aiohttp_client.async_get_clientsession(hass), session
+            aiohttp_client.async_get_clientsession(hass, verify_ssl=False), session
         )
     }
 
