@@ -23,7 +23,11 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .const import CONF_URL_SECURITY, NETATMO_CREATE_SIREN_ALARM_CONTROL_PANEL
+from .const import (
+    CONF_ALARM_DISARM_PERSONS,
+    CONF_URL_SECURITY,
+    NETATMO_CREATE_SIREN_ALARM_CONTROL_PANEL,
+)
 from .data_handler import HOME, SIGNAL_NAME, NetatmoDevice
 from .entity import NetatmoModuleEntity
 
@@ -102,9 +106,15 @@ class NetatmoAlarmEntity(NetatmoModuleEntity, AlarmControlPanelEntity):
 
     async def async_alarm_disarm(self, code: str | None = None) -> None:
         """Send disarm command."""
-        person_ids = list(self.home.persons.keys())
+
+        person_names = self.data_handler.config_entry.options.get(
+            CONF_ALARM_DISARM_PERSONS, []
+        )
+        persons = [p for p in self.home.persons.values() if p.pseudo in person_names]
+        person_ids = [p.entity_id for p in persons]
+
         await self.home.async_set_persons_home(person_ids)
-        for person in self.home.persons.values():
+        for person in persons:
             person.out_of_sight = False
         self.data_handler.notify(self._signal_name)
 

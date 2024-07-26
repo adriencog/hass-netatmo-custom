@@ -41,11 +41,18 @@
       },
       "public_weather_areas": {
         "data": {
-          "new_area": "Area name",
+          "alarm_disarm_persons": "Area name",
           "weather_areas": "Weather areas"
         },
         "description": "Configure public weather sensors.",
         "title": "[%key:component::netatmo::options::step::public_weather::title%]"
+      },
+      "alarm_config": {
+        "data": {
+          "alarm_disarm_persons": "Persons to set home to disarm"
+        },
+        "description": "Configure alarm control panel.",
+        "title": "[%key:component::netatmo::options::step::alarm_config::title%]"
       }
     }
   },
