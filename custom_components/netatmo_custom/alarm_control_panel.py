@@ -104,12 +104,16 @@ class NetatmoAlarmEntity(NetatmoModuleEntity, AlarmControlPanelEntity):
         """Send disarm command."""
         person_ids = list(self.home.persons.keys())
         await self.home.async_set_persons_home(person_ids)
-        self._attr_state = STATE_ALARM_DISARMED
+        for person in self.home.persons.values():
+            person.out_of_sight = False
+        self.data_handler.notify(self._signal_name)
 
     async def async_alarm_arm_away(self, code: str | None = None) -> None:
         """Send arm away command."""
         await self.home.async_set_persons_away()
-        self._attr_state = STATE_ALARM_ARMED_AWAY
+        for person in self.home.persons.values():
+            person.out_of_sight = True
+        self.data_handler.notify(self._signal_name)
 
     @callback
     def async_update_callback(self) -> None:
