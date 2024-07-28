@@ -8,7 +8,7 @@ import secrets
 from typing import Any
 
 import aiohttp
-import pyatmo
+from . import pyatmo
 
 from homeassistant.components import cloud
 from homeassistant.components.webhook import (

@@ -5,8 +5,8 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from pyatmo import DeviceType, modules as NaModules
-from pyatmo.person import Person
+from .pyatmo import DeviceType, modules as NaModules
+from .pyatmo.person import Person
 
 from homeassistant.components.switch import (
     SwitchDeviceClass,

@@ -11,8 +11,8 @@ from time import time
 from typing import Any
 
 import aiohttp
-import pyatmo
-from pyatmo.modules.device_types import (
+from . import pyatmo
+from .pyatmo.modules.device_types import (
     DeviceCategory as NetatmoDeviceCategory,
     DeviceType as NetatmoDeviceType,
 )

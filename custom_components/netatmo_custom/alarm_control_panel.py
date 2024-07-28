@@ -6,7 +6,7 @@ from dataclasses import dataclass
 import logging
 from typing import cast
 
-from pyatmo.modules.netatmo import NIS, NACamera
+from .pyatmo.modules.netatmo import NIS, NACamera
 
 from homeassistant.components.alarm_control_panel import (
     AlarmControlPanelEntity,

@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from pyatmo import modules as NaModules
+from .pyatmo import modules as NaModules
 
 from homeassistant.components.cover import (
     ATTR_POSITION,

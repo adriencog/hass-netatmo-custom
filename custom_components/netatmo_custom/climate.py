@@ -5,8 +5,8 @@ from __future__ import annotations
 import logging
 from typing import Any, cast
 
-from pyatmo.modules import NATherm1
-from pyatmo.modules.device_types import DeviceType
+from .pyatmo.modules import NATherm1
+from .pyatmo.modules.device_types import DeviceType
 import voluptuous as vol
 
 from homeassistant.components.climate import (

@@ -5,9 +5,9 @@ from __future__ import annotations
 from abc import abstractmethod
 from typing import Any, cast
 
-from pyatmo import DeviceType, Home, Module, Room
-from pyatmo.modules.base_class import NetatmoBase, Place
-from pyatmo.modules.device_types import DEVICE_DESCRIPTION_MAP
+from .pyatmo import DeviceType, Home, Module, Room
+from .pyatmo.modules.base_class import NetatmoBase, Place
+from .pyatmo.modules.device_types import DEVICE_DESCRIPTION_MAP
 
 from homeassistant.const import ATTR_LATITUDE, ATTR_LONGITUDE
 from homeassistant.core import callback

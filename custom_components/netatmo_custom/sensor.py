@@ -7,8 +7,8 @@ from dataclasses import dataclass
 import logging
 from typing import Any, cast
 
-import pyatmo
-from pyatmo.modules import PublicWeatherArea
+from . import pyatmo
+from .pyatmo.modules import PublicWeatherArea
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
